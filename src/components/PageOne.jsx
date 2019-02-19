@@ -1,14 +1,15 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
+import PageLink from './PageLink.jsx'
 
+import Page from './Page.jsx'
 export default class PageOne extends React.Component {
   render() {
     return (
-      <div>
+      <Page>
         <h1>Page One!</h1>
-        <Link to="/pagetwo">Click for page two!</Link>
-      </div>
+        <PageLink path="/pagetwo" direction="forward" text="Click for page two!" />
+      </Page>
     )
   }
 }

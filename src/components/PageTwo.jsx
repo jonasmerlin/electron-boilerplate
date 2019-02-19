@@ -1,14 +1,16 @@
 import React from 'react';
 
-import { Link } from 'react-router-dom';
+import Page from './Page.jsx'
+import PageLink from './PageLink.jsx'
+
 
 export default class PageTwo extends React.Component {
   render() {
     return (
-      <div>
+      <Page>
         <h1>Page Two!</h1>
-        <Link to={ this.props.pageOnePath }>Click for page one!</Link>
-      </div>
+        <PageLink path={this.props.pageOnePath} direction="back" text="Click for page one!" />
+      </Page>
     )
   }
 }
