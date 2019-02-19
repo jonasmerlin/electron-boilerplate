@@ -9,7 +9,9 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "lint": "eslint --cache --color --ext .jsx,.js src"
+    "lint": "eslint --cache --color --ext .jsx,.js src",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "keywords": [],
   "author": "jonasmerlin",
@@ -73,6 +75,12 @@
     "eslint-config-airbnb": "^15",
     "eslint-plugin-import": "^2",
     "eslint-plugin-jsx-a11y": "^5",
-    "eslint-plugin-react": "^7"
+    "eslint-plugin-react": "^7",
+    "@storybook/react": "^4.1.12",
+    "@storybook/addon-actions": "^4.1.12",
+    "@storybook/addon-links": "^4.1.12",
+    "@storybook/addons": "^4.1.12",
+    "@babel/core": "^7.3.3",
+    "babel-loader": "^8.0.5"
   }
 }
