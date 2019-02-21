@@ -5,7 +5,7 @@ import { hot } from 'react-hot-loader';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import { TransitionGroup, Transition } from 'react-transition-group';
 
-import styled from 'styled-components';
+import styled, { ThemeProvider, createGlobalStyle } from 'styled-components';
 import anime from 'animejs';
 
 import PageOne from './components/PageOne.jsx';
@@ -13,18 +13,23 @@ import PageTwo from './components/PageTwo.jsx';
 
 const pageOnePath = `${__dirname}/index.html`;
 
-const ScreenWrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
-  position: absolute;
+
+const GlobalStyle = createGlobalStyle`
+  @font-face {
+    font-family: 'Montserrat';
+    src: url('./static/Montserrat/Montserrat-Bold.ttf');
+  }
 `
 
 const Screen = styled.div`
   height: 100vh;
   width: 100vw;
   background-color: white;
-  position: relative;
+  position: absolute;
   text-align: center;
+`
+
+const HMRWrapper = styled.div`
 `
 
 export default class App extends React.Component {
@@ -34,7 +39,6 @@ export default class App extends React.Component {
         <Route render={
             ({ location} ) => {
               return (
-                <ScreenWrapper>
                   <Screen>
                     <TransitionGroup
                       childFactory={
@@ -74,19 +78,46 @@ export default class App extends React.Component {
                         key={ location.key }
                         timeout={ 1200 }
                       >
-                        <Switch location={ location }>
-                          {/* define all page routes here */}
+                      <ThemeProvider
+                        theme={{
+                          colors: {
+                            grassCourtGreen:    '#4ABD88',
+                            hardCourtLightBlue: '#218F9B',
+                            hardCourtDarkBlue:  '#104153',
+                            clayCourtRed:       '#FC8173',
+                            warmYellow:         '#E0C885',
+                            black:              '#000000',
+                            darkGrey:           '#3A3A3A',
+                            mediumGrey:         '#939393',
+                            lightGrey:          '#CECECE',
+                            ultraLightGrey:     '#F9F9F9',
+                            white:              '#FFFFFF',
+                            warmGrey01:         '#CCC3C0',
+                            warmGrey02:         '#E9DEDA',
+                            warmGrey03:         '#FCF0EB',
+                            warmGrey04:         '#F8F8F4'
+                          },
+                          shadows: {
+                            level01: '0 5px 10px 0 #757575, 0 4px 5px 0 #a8a8a8;'
+                          }
+                        }}
+                      >
+                        <React.Fragment>
+                          {/* <GlobalStyle /> */}
+                            <Switch location={ location }>
+                              {/* define all page routes here */}
 
-                          <Route path={ pageOnePath } component={ PageOne } />
-                          <Route path="/pagetwo" render={
-                            () => <PageTwo pageOnePath={ pageOnePath } />
-                          } />
+                              <Route path={ pageOnePath } component={ PageOne } />
+                              <Route path="/pagetwo" render={
+                                () => <PageTwo pageOnePath={ pageOnePath } />
+                              } />
 
-                        </Switch>
+                            </Switch>
+                        </React.Fragment>
+                      </ThemeProvider>
                       </Transition>
                     </TransitionGroup>
                   </Screen>
-                </ScreenWrapper>
               )
             }
           } />

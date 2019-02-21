@@ -9,7 +9,11 @@ export default class PageLink extends React.Component {
         state: {
           transition: this.props.direction
         }
-      }}>{ this.props.text }</Link>
+      }}>
+        {
+          this.props.children
+        }
+      </Link>
     )
   }
 }
